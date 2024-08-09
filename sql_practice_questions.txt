@@ -1,0 +1,113 @@
+create database studentdb;
+show databases;
+use studentdb;
+create table student(
+rollno int,
+name varchar(20),
+city varchar(20));
+show tables;
+insert into student 
+values(1,"dhruv","mumbai");
+select * from student;
+insert into student
+values(2,"laksh","mumbai"),(3,"kripa","mumbai"),(4,"parth","mumbai"),(5,"sumit","mumbai");
+
+use studentdb;
+create table emp(
+	empno int(11),
+    ename varchar(20),
+    job varchar(20),
+    mgr int(11),
+    hiredate date,
+    sal int(11),
+    comm int(11),
+    deptno int(11));
+    
+show tables;
+
+create table dept(
+	deptno int(11),
+    dname varchar(20),
+    loc varchar(20));
+
+use studentdb;
+
+insert into emp values ('7369' , 'SMITH', 'CLERK', '7902', '1980-12-17','800',NULL,'20'),
+('7499','ALLEN','SALESMAN','7698','1981-02-20','1600.00','300.00','30'),('7521','WARD','SALESMAN','7698','1981-02-22','1250.00','500.00','30')
+,('7566','JONES','MANAGER','7839','1981-04-02','2975.00',NULL,'20'),('7654','MARTIN','SALESMAN','7698','1981-09-28','1250.00','1400.00','30')
+,('7698','BLAKE','MANAGER','7839','1981-05-01','2850.00',NULL,'30'),('7782','CLARK','MANAGER','7839','1981-06-09','2450.00',NULL,'10'),
+('7788','SCOTT','ANALYST','7566','1982-12-09','3000.00',NULL,'20'),('7839','KING','PRESIDENT',NULL,'1981-11-17','5000.00',NULL,'10'),
+('7844','TURNER','SALESMAN','7698','1981-09-08','1500.00','0.00','30'),('7876','ADAMS','CLERK','7788','1983-01-12','1100.00',NULL,'20'),
+('7900','JAMES','CLERK','7698','1981-12-03','950.00',NULL,'30'),('7902','FORD','ANALYST','7566','1981-12-03','3000.00',NULL,'20'),
+('7934','MILLER','CLERK','7782','1982-01-23','1300.00',NULL,'10');
+
+insert into dept values('10','ACCOUNTING','NEW YORK'),('20','RESEARCH','DALLAS'),('30','SALES','CHICAGO'),('40','OPERATIONS','BOSTON');
+
+select * from emp;
+select * from dept;
+
+use studentdb;
+select * from emp where deptno = 10;
+select ename,job,hiredate from emp;
+select ename,job,hiredate from emp where deptno = 10;
+
+select ename,sal,deptno from emp where sal > 1500 and deptno = 30;
+select ename,sal,deptno from emp where sal > 1500 or deptno = 30;
+
+select ename,mgr,deptno from emp where mgr = 7839 and deptno = 10;
+
+select ename,sal from emp where sal >= 2450 and sal <=5000;
+select ename,sal from emp where sal  between 2450 and 5000;
+
+select ename,job from emp where job in('clerk','manager','salesman');
+select ename,job from emp where job not in ('clerk','manager','salesman');
+select ename,sal, sal*12 as 'annual salary' from emp;
+select ename,sal,sal/26 as 'daily salary'from emp;
+
+select ename,deptno,job,sal/26 as 'daily salary' from emp where deptno in(20,30) and job = 'salesman' or job= 'clerk';
+
+select ename,sal from emp;
+Select ename,sal+comm from emp;
+select*from emp where sal>3000;
+
+select * from emp where deptno not in (20);
+
+select * from emp where ename = 'blake';
+select * from emp where job='salesman' and sal>1000;
+select * from emp where job in ('salesman','clerk');
+
+select * from emp where sal<=1000;
+
+select * from emp where sal between 2000 and 5000;
+
+select * from emp where ename like 's%';
+
+select * from emp where ename in ('blake','king','clark','smith');
+
+select * from emp where hiredate like '1981%';
+
+select * from emp where hiredate like '%12%'; 
+
+select empno,ename,sal from emp where mgr = '7698';
+
+select * from emp where job = 'clerk' and deptno=20;
+
+select * from emp where ename like '%r';
+
+select * from emp where ename like 's%';
+
+select * from emp where ename like 'b%e';
+
+select * from emp where ename like '%r%';
+
+select * from emp where hiredate like '%28';
+
+select * from emp where ename like 'ki__';
+
+select * from emp where hiredate like '%02%__';
+
+select * from emp where ename like '%a%e%';
+
+select * from emp where ename like '__r_';
+
+select * from emp where hiredate not like'1981%';

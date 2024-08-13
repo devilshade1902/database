@@ -1,0 +1,35 @@
+create table pet(
+	pet_name varchar(22),
+    pet_age int(11),
+    description varchar(50),
+	pet_price int(11)
+);
+
+desc pet;
+
+alter table pet add column pet_food varchar(50),add column pet_breed varchar(50);
+
+insert into pet values ('billy','2','energetic and well-trained dog','20000','pedigree','labrador'),
+('max','11','friendly fish','6000','flake foods','goldfish'),('joel','4','active and friendly dog','23000','kibble','german shephard'),
+('samantha','17','friendly and strong turtle','21000','worms','singaporean turtle'),('sam','7','well-trained and strong','40000','raw meat','labrador'),
+('karl','6','can mimic voice','9000','worms','parrot'),('milly','12','active and energetic dog','50000','pedigree','labrador');
+
+select * from pet;
+
+select * from pet where pet_age > 5;
+
+select * from pet where pet_breed = 'labrador';
+
+select * from pet where pet_price between 34000 and 56000;
+
+select * from pet where pet_food = 'pedigree';
+
+alter table pet change column description pet_description varchar(50);
+
+alter table pet modify column pet_description varchar(150);
+
+update pet 
+set pet_price = '20000'
+where pet_age > '7';
+
+delete from pet where pet_price < 10000;

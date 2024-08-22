@@ -1,0 +1,40 @@
+create table customer(
+	customer_id int not null check (customer_id>0) primary key,
+	customer_name varchar(20) not null,
+    customer_password int not null check(length(customer_password) between 6 and 10)
+);
+
+create table product(
+	product_id int not null primary key,
+    product_name varchar(20) not null unique,
+    product_qty int check (product_qty > 0),
+    customer_id int ,
+    constraint fk_3 foreign key(customer_id) references customer(customer_id)
+);
+
+select * from customer;
+
+insert into customer values(3,"billy",6787654);
+insert into customer values(4,"annie",37547378);
+insert into customer values(5,"mm",737485986);
+
+insert into customer values(1,"marvin",7374758);-- Error Code: 1062. Duplicate entry '1' for key 'customer.PRIMARY'	0.000 sec
+insert into customer values(6,"varun",84739); -- Error Code: 3819. Check constraint 'customer_chk_2' is violated.	0.000 sec
+
+insert into customer(customer_id,customer_password) values(7,7384758); -- Error Code: 1364. Field 'customer_name' doesn't have a default value	0.000 sec
+insert into customer values(8,"billy",8475837);
+
+
+insert into product values(10,"laptop",4,1);
+insert into product values(20,"book",12,2);
+insert into product values (30,"phone",3,3);
+insert into product values (40,"bottle",10,4);
+insert into product values (50,"pen",40,5);
+
+select * from product;
+
+insert into product values(70,"mouse",40,6); -- Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`student5`.`product`, CONSTRAINT `fk_3` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`))
+insert into product values (00,"mouse",34,2); -- Error Code: 1062. Duplicate entry 'mouse' for key 'product.product_name'
+insert into product values(90,"key",-1,3); -- Error Code: 3819. Check constraint 'product_chk_1' is violated.
+insert into  product(product_id,product_qty,customer_id) values (100,10,4); -- Error Code: 1364. Field 'product_name' doesn't have a default value
+insert into product values (10,"cover",10,2);--  Error Code: 1062. Duplicate entry '10' for key 'product.PRIMARY'
